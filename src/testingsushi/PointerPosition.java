@@ -1,8 +1,6 @@
 package testingsushi;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class PointerPosition extends AbstractGridPosition {
     Rectangle rectangle;
@@ -15,8 +13,5 @@ public class PointerPosition extends AbstractGridPosition {
         rectangle.draw();
         this.grid = grid;
     }
-
-
-
 
 }

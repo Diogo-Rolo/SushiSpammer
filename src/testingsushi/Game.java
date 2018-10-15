@@ -10,7 +10,7 @@ public class Game implements KeyboardHandler {
     Grid gameGrid = new Grid();
     PointerPosition pointer;
 
-    public Game(){
+    public Game() {
 
 
         //KEYBOARD SHIT
@@ -35,16 +35,22 @@ public class Game implements KeyboardHandler {
         down.setKey(KeyboardEvent.KEY_DOWN);
         down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(down);
+
+        //Spacebar Event Seb
+        KeyboardEvent spaceBar = new KeyboardEvent();
+        spaceBar.setKey(KeyboardEvent.KEY_SPACE);
+        spaceBar.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(spaceBar);
     }
 
 
-    public void init(){
+    public void init() {
 
 
-        GridPositions[] sushies = new GridPositions[gameGrid.rows*gameGrid.cols];
+        GridPositions[] sushies = new GridPositions[gameGrid.rows * gameGrid.cols];
         int x = 0;
-        for (int y = 0; y <gameGrid.rows;){
-            if (x == gameGrid.getCols()){
+        for (int y = 0; y < gameGrid.rows; ) {
+            if (x == gameGrid.getCols()) {
                 x = 0;
                 y++;
             } else {
@@ -60,49 +66,53 @@ public class Game implements KeyboardHandler {
 
     }
 
-    private void moveLeft(){
-        if (pointer.getCol() == 1){
+    private void moveLeft() {
+        if (pointer.getCol() == 1) {
             return;
         }
         pointer.rectangle.translate(-gameGrid.getCELL_SIZE(), 0);
-        pointer.setCol(pointer.getCol()-1);
+        pointer.setCol(pointer.getCol() - 1);
     }
 
-    private void moveRight(){
-        if (pointer.getCol() >= gameGrid.cols){
+    private void moveRight() {
+        if (pointer.getCol() >= gameGrid.cols) {
             return;
         }
         pointer.rectangle.translate(gameGrid.CELL_SIZE, 0);
-        pointer.setCol(pointer.getCol()+1);
+        pointer.setCol(pointer.getCol() + 1);
     }
 
-        private void moveUp(){
-            if (pointer.getRow() == 1){
-                return;
-            }
-            pointer.rectangle.translate(0, - gameGrid.CELL_SIZE);
-            pointer.setRow(pointer.getRow() - 1);
+    private void moveUp() {
+        if (pointer.getRow() == 1) {
+            return;
         }
+        pointer.rectangle.translate(0, -gameGrid.CELL_SIZE);
+        pointer.setRow(pointer.getRow() - 1);
+    }
 
-        private void moveDown(){
-            if (pointer.getRow() >= gameGrid.rows){
-                return;
-            }
-            pointer.rectangle.translate(0, gameGrid.CELL_SIZE);
-            pointer.setRow(pointer.getRow() + 1);
+    private void moveDown() {
+        if (pointer.getRow() >= gameGrid.rows) {
+            return;
         }
+        pointer.rectangle.translate(0, gameGrid.CELL_SIZE);
+        pointer.setRow(pointer.getRow() + 1);
+    }
+
+
+    private void spaceBar() {
+
+    }
+
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
-        switch(keyboardEvent.getKey()){
+        switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_LEFT:
                 moveLeft();
-                System.out.println("moving left was called");
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 moveRight();
-                System.out.println("moving right was called");
                 break;
             case KeyboardEvent.KEY_UP:
                 moveUp();
@@ -110,13 +120,18 @@ public class Game implements KeyboardHandler {
             case KeyboardEvent.KEY_DOWN:
                 moveDown();
                 break;
+            //space event
+            case KeyboardEvent.KEY_SPACE:
+                spaceBar();
+                break;
+
             default:
                 System.out.println("something wrong!");
         }
 
     }
 
-    public void keyReleased(KeyboardEvent keyboardEvent){
+    public void keyReleased(KeyboardEvent keyboardEvent) {
 
     }
 }
