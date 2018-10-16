@@ -9,6 +9,8 @@ public class Game implements KeyboardHandler {
 
     Grid gameGrid = new Grid();
     PointerPosition pointer;
+    GridPositions[] positions;
+
 
     public Game() {
 
@@ -47,14 +49,14 @@ public class Game implements KeyboardHandler {
     public void init() {
 
 
-        GridPositions[] sushies = new GridPositions[gameGrid.rows * gameGrid.cols];
+        positions = new GridPositions[gameGrid.rows * gameGrid.cols];
         int x = 0;
         for (int y = 0; y < gameGrid.rows; ) {
             if (x == gameGrid.getCols()) {
                 x = 0;
                 y++;
             } else {
-                sushies[y] = new GridPositions(x, y, gameGrid);
+                positions[y] = new GridPositions(x, y, gameGrid);
                 x++;
             }
 
@@ -100,7 +102,8 @@ public class Game implements KeyboardHandler {
 
 
     private void spaceBar() {
-
+        System.out.println("spacebar");
+        positions[1].clickFood();
     }
 
 

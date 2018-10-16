@@ -18,5 +18,11 @@ public class GridPositions extends AbstractGridPosition{
 
     }
 
+    public void clickFood(){
+        if (food.click()){
+            xuxi.delete();
+            System.out.println("delete was called");
+        }
+    }
 
 }

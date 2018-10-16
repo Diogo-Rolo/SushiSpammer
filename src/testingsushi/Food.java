@@ -6,11 +6,17 @@ public abstract class Food implements Clickables{
     private int timesToBeClicked;
     private int tastyness;
     private String image;
+    private boolean eaten;
 
     //METHODS
     @Override
-    public void click() {
-
+    public boolean click() {
+        timesToBeClicked -= 1;
+        if (timesToBeClicked <= 0){
+            eaten = true;
+            System.out.println("sushi eaten");
+        }
+        return eaten;
     }
 
     public int getTimesToBeClicked() {
