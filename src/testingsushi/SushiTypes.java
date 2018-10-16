@@ -4,9 +4,9 @@ public enum SushiTypes {
 
     MAKI (5, 10, "sushitest.png"),
     URAMAKI (5, 10, "sushitest2.jpg"),
-    SASHIMI (5, 10, "sushitest.png"),
-    NIGIRI (5, 10, "sushitest.png"),
-    TEMAKI (5, 10, "sushitest.png");
+    SASHIMI (5, 10, "sashimi.jpg"),
+    NIGIRI (5, 10, "nigiri.jpg"),
+    TEMAKI (5, 10, "temaki.jpg");
 
     private int timesToBeClicked;
     private int tastyness;
