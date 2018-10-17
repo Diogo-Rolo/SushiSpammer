@@ -14,4 +14,5 @@ public class PointerPosition extends AbstractGridPosition {
         this.grid = grid;
     }
 
+
 }

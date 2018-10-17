@@ -4,13 +4,15 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game implements KeyboardHandler {
 
     Grid gameGrid = new Grid();
     PointerPosition pointer;
-    GridPositions[] positions;
-
+    GridPosition[] positions;
+    PositionDetector positionDetector;
+    GridPosition current;
 
     public Game() {
 
@@ -43,27 +45,44 @@ public class Game implements KeyboardHandler {
         spaceBar.setKey(KeyboardEvent.KEY_SPACE);
         spaceBar.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(spaceBar);
+
+
     }
 
 
     public void init() {
 
-
-        positions = new GridPositions[gameGrid.rows * gameGrid.cols];
+        Picture background = new Picture(10, 10, "background.png");
+        background.draw();
+        gameGrid.init();
+        positions = new GridPosition[gameGrid.rows * gameGrid.cols];
         int x = 0;
+        int y = 0;
+        for (GridPosition i:positions){
+            i = new GridPosition(x, y , gameGrid);
+            x++;
+            if (x == gameGrid.getCols()){
+                y++;
+                x = 0;
+            }
+
+        }
+        /*
         for (int y = 0; y < gameGrid.rows; ) {
-            if (x == gameGrid.getCols()) {
+            if (x == gameGrid.getCols() - 2) {
                 x = 0;
                 y++;
             } else {
-                positions[y] = new GridPositions(x, y, gameGrid);
+                positions[y] = new GridPosition(x, y, gameGrid);
                 x++;
             }
 
 
-        }
+        }*/
 
         pointer = new PointerPosition(gameGrid);
+        current = positions[1];
+        positionDetector = new PositionDetector(positions, pointer);
 
 
     }
@@ -74,6 +93,7 @@ public class Game implements KeyboardHandler {
         }
         pointer.rectangle.translate(-gameGrid.getCELL_SIZE(), 0);
         pointer.setCol(pointer.getCol() - 1);
+        current = positionDetector.checkPosition();
     }
 
     private void moveRight() {
@@ -103,7 +123,8 @@ public class Game implements KeyboardHandler {
 
     private void spaceBar() {
         System.out.println("spacebar");
-        positions[1].clickFood();
+        current.clickFood();
+
     }
 
 

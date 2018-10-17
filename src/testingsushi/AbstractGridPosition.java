@@ -39,7 +39,7 @@ public abstract class AbstractGridPosition {
         this.grid = grid;
     }
 
-    public void comparePos(GridPositions grid){
+    public void comparePos(GridPosition grid){
         if (this.col == grid.getCol() && this.row == grid.getRow()){
             System.out.println("these are in the same spot");
         } else {

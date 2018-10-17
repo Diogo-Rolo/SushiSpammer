@@ -12,7 +12,7 @@ public abstract class Food implements Clickables{
     @Override
     public boolean click() {
         timesToBeClicked -= 1;
-        if (timesToBeClicked <= 0){
+        if (timesToBeClicked == 0){
             eaten = true;
             System.out.println("sushi eaten");
         }

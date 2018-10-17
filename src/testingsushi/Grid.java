@@ -8,7 +8,7 @@ public class Grid {
     //PROPERTIES
     int cols;
     int rows;
-    final int PADDING = 10;
+    final int PADDING = 100;
     final int CELL_SIZE = 30;
     Rectangle grid;
 
